@@ -2,7 +2,7 @@
 
 namespace AndrewGos\ClassBuilder\Tests\New;
 
-use AndrewGos\ClassBuilder\Attributes\ArrayType;
+use AndrewGos\ClassBuilder\Attribute\ArrayType;
 
 class TestClass
 {

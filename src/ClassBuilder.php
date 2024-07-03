@@ -2,10 +2,10 @@
 
 namespace AndrewGos\ClassBuilder;
 
-use AndrewGos\ClassBuilder\Attributes\ArrayType;
-use AndrewGos\ClassBuilder\Attributes\AvailableInheritors;
-use AndrewGos\ClassBuilder\Attributes\BuildIf;
-use AndrewGos\ClassBuilder\Attributes\CanBeBuiltFromScalar;
+use AndrewGos\ClassBuilder\Attribute\ArrayType;
+use AndrewGos\ClassBuilder\Attribute\AvailableInheritors;
+use AndrewGos\ClassBuilder\Attribute\BuildIf;
+use AndrewGos\ClassBuilder\Attribute\CanBeBuiltFromScalar;
 use AndrewGos\ClassBuilder\BuildStack\BuildStack;
 use AndrewGos\ClassBuilder\Checker\CheckerInterface;
 use AndrewGos\ClassBuilder\Exception as Exp;

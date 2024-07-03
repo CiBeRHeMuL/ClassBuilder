@@ -2,7 +2,7 @@
 
 namespace AndrewGos\ClassBuilder\Tests\TestClasses;
 
-use AndrewGos\ClassBuilder\Attributes\ArrayType;
+use AndrewGos\ClassBuilder\Attribute\ArrayType;
 
 class SimpleArrayClass
 {

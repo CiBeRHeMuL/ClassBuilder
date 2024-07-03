@@ -2,7 +2,7 @@
 
 namespace AndrewGos\ClassBuilder\Tests\TestClasses;
 
-use AndrewGos\ClassBuilder\Attributes\CanBeBuiltFromScalar;
+use AndrewGos\ClassBuilder\Attribute\CanBeBuiltFromScalar;
 
 #[CanBeBuiltFromScalar]
 class SimpleVariadic

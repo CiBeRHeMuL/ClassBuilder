@@ -2,7 +2,7 @@
 
 namespace AndrewGos\ClassBuilder\Tests\New;
 
-use AndrewGos\ClassBuilder\Attributes\AvailableInheritors;
+use AndrewGos\ClassBuilder\Attribute\AvailableInheritors;
 
 #[AvailableInheritors([
     TestInheritInterface1::class,

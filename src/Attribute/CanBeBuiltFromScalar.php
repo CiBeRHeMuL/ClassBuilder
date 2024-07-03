@@ -1,6 +1,6 @@
 <?php
 
-namespace AndrewGos\ClassBuilder\Attributes;
+namespace AndrewGos\ClassBuilder\Attribute;
 
 use Attribute;
 

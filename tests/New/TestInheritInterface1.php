@@ -2,8 +2,8 @@
 
 namespace AndrewGos\ClassBuilder\Tests\New;
 
-use AndrewGos\ClassBuilder\Attributes\BuildIf;
-use AndrewGos\ClassBuilder\Attributes\CanBeBuiltFromScalar;
+use AndrewGos\ClassBuilder\Attribute\BuildIf;
+use AndrewGos\ClassBuilder\Attribute\CanBeBuiltFromScalar;
 use AndrewGos\ClassBuilder\Checker\FieldIsChecker;
 
 #[CanBeBuiltFromScalar]

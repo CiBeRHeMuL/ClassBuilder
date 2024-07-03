@@ -2,7 +2,7 @@
 
 namespace AndrewGos\ClassBuilder\Tests\TestClasses;
 
-use AndrewGos\ClassBuilder\Attributes\AvailableInheritors;
+use AndrewGos\ClassBuilder\Attribute\AvailableInheritors;
 
 #[AvailableInheritors([
     All1Class::class,

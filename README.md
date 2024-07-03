@@ -50,10 +50,11 @@ This attribute can take array of inheritors. \
 
 Note, that if you make class parameter type as intersection of types, then this library will build inheritors,
 which contained in every interface or class in type
+
 ```php
 <?php
 
-use AndrewGos\ClassBuilder\Attributes\AvailableInheritors;
+use AndrewGos\ClassBuilder\Attribute\AvailableInheritors;
 
 #[AvailableInheritors([B::class, C::class])]
 interface A {}
@@ -68,11 +69,12 @@ class C implements A {}
 To control the building of interfaces or abstract classes, you can use the `BuildIf` attribute for the inheriting classes. \
 This attribute instructs the builder to check the data before building. If the check fails, the builder will not construct the object. \
 `BuildIf` attribute can take object of `CheckerInterface` attribute.
+
 ```php
 <?php
 
-use AndrewGos\ClassBuilder\Attributes\AvailableInheritors;
-use AndrewGos\ClassBuilder\Attributes\BuildIf;
+use AndrewGos\ClassBuilder\Attribute\AvailableInheritors;
+use AndrewGos\ClassBuilder\Attribute\BuildIf;
 use AndrewGos\ClassBuilder\Checker\FieldIsChecker;
 
 #[AvailableInheritors([B::class, C::class])]
@@ -89,10 +91,11 @@ In this example, an object of class `B` will be built only if the data contains 
 ## Building typed arrays
 
 To build typed arrays, use the `ArrayType` attribute. The attribute can take one type, an array of types, or an `ArrayType` object as a parameter.
+
 ```php
 <?php
 
-use AndrewGos\ClassBuilder\Attributes\ArrayType;
+use AndrewGos\ClassBuilder\Attribute\ArrayType;
 
 class A
 {
@@ -106,10 +109,11 @@ class A
 ## Building objects from scalars
 
 If an object has only one required parameter, the library allows building such objects from scalar values. Use the `CanBeBuiltFromScalar` attribute.
+
 ```php
 <?php
 
-use AndrewGos\ClassBuilder\Attributes\CanBeBuiltFromScalar;
+use AndrewGos\ClassBuilder\Attribute\CanBeBuiltFromScalar;
 use AndrewGos\ClassBuilder\ClassBuilder;
 
 #[CanBeBuiltFromScalar]
