@@ -132,12 +132,12 @@ class ClassBuilder implements ClassBuilderInterface
 
     private function buildType(string $type, mixed $data, BuildStack &$stack): mixed
     {
-        if (class_exists($type) || interface_exists($type)) {
-            return $this->buildObject($type, $data, $stack);
-        } elseif (is_subclass_of($type, BackedEnum::class, true)) {
+        if (is_subclass_of($type, BackedEnum::class, true)) {
             return $this->buildBackedEnum($type, $data, $stack);
         } elseif (is_subclass_of($type, UnitEnum::class, true)) {
             return $this->buildUnitEnum($type, $data, $stack);
+        } elseif (class_exists($type) || interface_exists($type)) {
+            return $this->buildObject($type, $data, $stack);
         } elseif (
             in_array(
                 $type,
