@@ -311,7 +311,7 @@ class ClassBuilder implements ClassBuilderInterface
                             if ($isOptional && $allowDefaultValue) {
                                 $boundParameters[$pName] = $parameter->getDefaultValue();
                             } else {
-                                throw new Exp\CannotBuildReferenceException($stack);
+                                throw new Exp\CannotBuildException($stack);
                             }
                             $stack->pop();
                         }
