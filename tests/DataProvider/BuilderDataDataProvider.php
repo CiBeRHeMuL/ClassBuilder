@@ -128,6 +128,14 @@ class BuilderDataDataProvider
                 'class' => Tc\SimpleVariadic::class,
                 'data' => [1, 2, 3],
             ],
+            [
+                'class' => TC\DateTimeClass::class,
+                'data' => '20240507',
+            ],
+            [
+                'class' => TC\DateTimeClass::class,
+                'data' => ['time' => '2024-05-07 01:01:01'],
+            ],
         ];
     }
 

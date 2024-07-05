@@ -10,6 +10,9 @@ use AndrewGos\ClassBuilder\BuildStack\BuildStack;
 use AndrewGos\ClassBuilder\Checker\CheckerInterface;
 use AndrewGos\ClassBuilder\Exception as Exp;
 use BackedEnum;
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionIntersectionType;
@@ -136,6 +139,8 @@ class ClassBuilder implements ClassBuilderInterface
             return $this->buildBackedEnum($type, $data, $stack);
         } elseif (is_subclass_of($type, UnitEnum::class, true)) {
             return $this->buildUnitEnum($type, $data, $stack);
+        } elseif (is_subclass_of($type, DateTimeInterface::class, true)) {
+            return $this->buildDateTime($type, $data, $stack);
         } elseif (class_exists($type) || interface_exists($type)) {
             return $this->buildObject($type, $data, $stack);
         } elseif (
@@ -165,6 +170,25 @@ class ClassBuilder implements ClassBuilderInterface
             }
         }
         throw new Exp\CannotBuildException($stack);
+    }
+
+    private function buildDateTime(string $type, mixed $data, BuildStack &$stack): DateTimeInterface
+    {
+        if ($type === DateTime::class) {
+            try {
+                return new DateTime($data);
+            } catch (Throwable) {
+                throw new Exp\CannotBuildException($stack);
+            }
+        } elseif ($type === DateTimeImmutable::class) {
+            try {
+                return new DateTimeImmutable($data);
+            } catch (Throwable) {
+                throw new Exp\CannotBuildException($stack);
+            }
+        } else {
+            throw new Exp\ClassNotFoundException($stack);
+        }
     }
 
     private function buildBackedEnum(string $enum, mixed $data, BuildStack &$stack): BackedEnum
