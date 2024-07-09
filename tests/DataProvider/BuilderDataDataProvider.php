@@ -136,6 +136,10 @@ class BuilderDataDataProvider
                 'class' => TC\DateTimeClass::class,
                 'data' => ['time' => '2024-05-07 01:01:01'],
             ],
+            [
+                'class' => TC\TestNull::class,
+                'data' => ['a' => null],
+            ],
         ];
     }
 

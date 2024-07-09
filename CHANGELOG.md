@@ -1,5 +1,10 @@
 # Change log of Class Builder Library
 
+## Version 1.2.1
+
+### General
++ Fix exception type if value not present in array which is used to build object
+
 ## Version 1.2
 
 ### General
