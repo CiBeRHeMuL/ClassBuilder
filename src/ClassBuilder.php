@@ -6,6 +6,7 @@ use AndrewGos\ClassBuilder\Attribute\ArrayType;
 use AndrewGos\ClassBuilder\Attribute\AvailableInheritors;
 use AndrewGos\ClassBuilder\Attribute\BuildIf;
 use AndrewGos\ClassBuilder\Attribute\CanBeBuiltFromScalar;
+use AndrewGos\ClassBuilder\Attribute\Field;
 use AndrewGos\ClassBuilder\BuildStack\BuildStack;
 use AndrewGos\ClassBuilder\Checker\CheckerInterface;
 use AndrewGos\ClassBuilder\Exception as Exp;
@@ -270,7 +271,12 @@ class ClassBuilder implements ClassBuilderInterface
                     if (count($requiredParameters) !== 1 && count($parameters) > 1) {
                         throw new Exp\CannotBuildFromPrimitive($stack);
                     } else {
-                        $data = [$parameters[0]->getName() => $data];
+                        $field = $parameters[0]->getName();
+                        $fieldAttr = $parameters[0]->getAttributes(Field::class);
+                        if ($fieldAttr) {
+                            $field = $fieldAttr[0]->newInstance()->getField();
+                        }
+                        $data = [$field => $data];
                     }
                 }
             }
@@ -288,6 +294,10 @@ class ClassBuilder implements ClassBuilderInterface
                             throw new Exp\CannotBuildReferenceException($stack);
                         }
                         $pName = $parameter->getName();
+                        $fieldAttr = $parameter->getAttributes(Field::class);
+                        if ($fieldAttr) {
+                            $pName = $fieldAttr[0]->newInstance()->getField();
+                        }
                         if (array_key_exists($pName, $data)) {
                             $type = $parameter->getType();
                             if ($type) {

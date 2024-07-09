@@ -128,3 +128,25 @@ class A
 $classBuilder = new ClassBuilder();
 $a = $classBuilder->build(A::class, 1);
 ```
+
+## Get values from fields with custom names
+
+If you want, you can redefine the field from which the value for the object property assembly is taken. \
+To do it, use `Field` attribute.
+```php
+<?php
+
+use AndrewGos\ClassBuilder\ClassBuilder;
+use AndrewGos\ClassBuilder\Attribute\Field;
+
+class A
+{
+    public function __construct(
+        #[Field('b')] private int $a,
+    ) {
+    }
+}
+
+$classBuilder = new ClassBuilder();
+$a = $classBuilder->build(A::class, ['b' => 1]);
+```

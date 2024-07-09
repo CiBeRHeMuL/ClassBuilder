@@ -1,5 +1,10 @@
 # Change log of Class Builder Library
 
+## Version 1.2
+
+### General
++ Add `Field` attribute
+
 ## Version 1.1
 
 ### General
