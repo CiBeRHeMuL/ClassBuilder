@@ -3,7 +3,7 @@
   "description": "Advanced library for building objects from arrays or other types",
   "type": "library",
   "license": "MIT",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "autoload": {
     "psr-4": {
       "AndrewGos\\ClassBuilder\\": "src/"

@@ -293,12 +293,12 @@ class ClassBuilder implements ClassBuilderInterface
                             );
                             throw new Exp\CannotBuildReferenceException($stack);
                         }
-                        $pName = $parameter->getName();
+                        $pName = $field = $parameter->getName();
                         $fieldAttr = $parameter->getAttributes(Field::class);
                         if ($fieldAttr) {
-                            $pName = $fieldAttr[0]->newInstance()->getField();
+                            $field = $fieldAttr[0]->newInstance()->getField();
                         }
-                        if (array_key_exists($pName, $data)) {
+                        if (array_key_exists($field, $data)) {
                             $type = $parameter->getType();
                             if ($type) {
                                 $types = $this->resolveTypes($type, $stack);
@@ -316,18 +316,18 @@ class ClassBuilder implements ClassBuilderInterface
                                 }
 
                                 if ($arrayType !== null) {
-                                    $stack->addTypedArray($pName, 'array', get_debug_type($data[$pName]));
+                                    $stack->addTypedArray($pName, 'array', get_debug_type($data[$field]));
                                     if ($parameter->isVariadic()) {
-                                        $variadicParameter = $this->buildArrayType($arrayType, $data[$pName], $stack);
+                                        $variadicParameter = $this->buildArrayType($arrayType, $data[$field], $stack);
                                     } else {
-                                        $boundParameters[$pName] = $this->buildArrayType($arrayType, $data[$pName], $stack);
+                                        $boundParameters[$pName] = $this->buildArrayType($arrayType, $data[$field], $stack);
                                     }
                                 } else {
-                                    $stack->addUnion($pName, implode('|', $types), get_debug_type($data[$pName]));
+                                    $stack->addUnion($pName, implode('|', $types), get_debug_type($data[$field]));
                                     if ($parameter->isVariadic()) {
-                                        $variadicParameter = $this->buildTypes($types, $data[$pName], $stack);
+                                        $variadicParameter = $this->buildTypes($types, $data[$field], $stack);
                                     } else {
-                                        $boundParameters[$pName] = $this->buildTypes($types, $data[$pName], $stack);
+                                        $boundParameters[$pName] = $this->buildTypes($types, $data[$field], $stack);
                                     }
                                 }
                                 $stack->pop();
@@ -335,7 +335,7 @@ class ClassBuilder implements ClassBuilderInterface
                                 if ($parameter->isVariadic()) {
                                     $variadicParameter = [$data];
                                 } else {
-                                    $boundParameters[$pName] = $data[$pName];
+                                    $boundParameters[$pName] = $data[$field];
                                 }
                             }
                         } else {

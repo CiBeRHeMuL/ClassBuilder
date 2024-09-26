@@ -1,5 +1,10 @@
 # Change log of Class Builder Library
 
+## Version 1.2.2
+
+### General
++ Fix building when field name is not equal parameter name
+
 ## Version 1.2.1
 
 ### General
