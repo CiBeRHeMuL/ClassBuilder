@@ -8,7 +8,7 @@ use Attribute;
  * This attribute says to builder that array parameter have specified element type
  */
 #[Attribute(Attribute::TARGET_PARAMETER | Attribute::TARGET_PROPERTY)]
-readonly class ArrayType
+readonly class ArrayType implements \Stringable
 {
     /**
      * @param string|string[]|ArrayType $type
@@ -24,5 +24,10 @@ readonly class ArrayType
     public function getType(): ArrayType|array|string
     {
         return $this->type;
+    }
+
+    public function __toString(): string
+    {
+        return '(' . implode('|', (array)$this->type) . ')[]';
     }
 }

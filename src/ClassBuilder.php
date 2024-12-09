@@ -109,7 +109,7 @@ class ClassBuilder implements ClassBuilderInterface
     }
 
     /**
-     * @param string[] $types
+     * @param (string|ArrayType)[] $types
      * @param mixed $data
      * @param BuildStack $stack
      *
@@ -134,9 +134,11 @@ class ClassBuilder implements ClassBuilderInterface
         throw new Exp\CannotBuildException($stack);
     }
 
-    private function buildType(string $type, mixed $data, BuildStack &$stack): mixed
+    private function buildType(string|ArrayType $type, mixed $data, BuildStack &$stack): mixed
     {
-        if (is_subclass_of($type, BackedEnum::class, true)) {
+        if ($type instanceof ArrayType) {
+            return $this->buildArrayType($type, $data, $stack);
+        } elseif (is_subclass_of($type, BackedEnum::class, true)) {
             return $this->buildBackedEnum($type, $data, $stack);
         } elseif (is_subclass_of($type, UnitEnum::class, true)) {
             return $this->buildUnitEnum($type, $data, $stack);
@@ -302,33 +304,27 @@ class ClassBuilder implements ClassBuilderInterface
                             $type = $parameter->getType();
                             if ($type) {
                                 $types = $this->resolveTypes($type, $stack);
-                                $arrayType = null;
-                                if (in_array('array', $types)) {
-                                    $arrayType = $parameter->getAttributes(ArrayType::class);
-                                    if ($arrayType) {
-                                        $arrayType = $arrayType[0]->newInstance();
-                                    } else {
-                                        $arrayType = null;
-                                    }
-                                }
+                                $arrayType = $parameter->getAttributes(ArrayType::class);
+                                $arrayType = $arrayType ? $arrayType[0]->newInstance() : null;
                                 if ($parameter->isVariadic()) {
                                     $arrayType = $arrayType ? new ArrayType($arrayType) : new ArrayType($types);
+                                    if (!in_array('array', $types)) {
+                                        $types[] = 'array';
+                                    }
+                                }
+                                if ($arrayType) {
+                                    foreach ($types as &$type) {
+                                        if ($type === 'array') {
+                                            $type = $arrayType;
+                                        }
+                                    }
                                 }
 
-                                if ($arrayType !== null) {
-                                    $stack->addTypedArray($pName, 'array', get_debug_type($data[$field]));
-                                    if ($parameter->isVariadic()) {
-                                        $variadicParameter = $this->buildArrayType($arrayType, $data[$field], $stack);
-                                    } else {
-                                        $boundParameters[$pName] = $this->buildArrayType($arrayType, $data[$field], $stack);
-                                    }
+                                $stack->addUnion($pName, implode('|', $types), get_debug_type($data[$field]));
+                                if ($parameter->isVariadic()) {
+                                    $variadicParameter = $this->buildTypes($types, $data[$field], $stack);
                                 } else {
-                                    $stack->addUnion($pName, implode('|', $types), get_debug_type($data[$field]));
-                                    if ($parameter->isVariadic()) {
-                                        $variadicParameter = $this->buildTypes($types, $data[$field], $stack);
-                                    } else {
-                                        $boundParameters[$pName] = $this->buildTypes($types, $data[$field], $stack);
-                                    }
+                                    $boundParameters[$pName] = $this->buildTypes($types, $data[$field], $stack);
                                 }
                                 $stack->pop();
                             } else {

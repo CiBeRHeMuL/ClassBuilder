@@ -41,6 +41,15 @@ class BuilderDataDataProvider
                 'data' => [
                     'a' => [1, 'asdf', false, 1.1234, null],
                     'b' => [[1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null]],
+                    'c' => ['asdf'],
+                ],
+            ],
+            [
+                'class' => TC\SimpleArrayClass::class,
+                'data' => [
+                    'a' => [1, 'asdf', false, 1.1234, null],
+                    'b' => [[1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null]],
+                    'c' => null,
                 ],
             ],
             [
@@ -171,6 +180,7 @@ class BuilderDataDataProvider
                 'data' => [
                     'a' => [1, 'asdf', false, 1.1234, [], null],
                     'b' => [[1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, [], null]],
+                    'c' => null,
                 ],
             ],
             [

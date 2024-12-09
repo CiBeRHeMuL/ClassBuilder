@@ -1,5 +1,10 @@
 # Change log of Class Builder Library
 
+## Version 1.2.3
+
+### General
++ Fix building when passing parameter with union type contains array type
+
 ## Version 1.2.2
 
 ### General
