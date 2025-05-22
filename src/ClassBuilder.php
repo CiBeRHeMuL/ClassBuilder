@@ -54,7 +54,7 @@ class ClassBuilder implements ClassBuilderInterface
     /**
      * @inheritDoc
      */
-    public function build(string $class, mixed $data, bool $throwOnError = true, BuildStack &$stack = null): object|null
+    public function build(string $class, mixed $data, bool $throwOnError = true, BuildStack|null &$stack = null): object|null
     {
         try {
             $needPop = false;
@@ -82,7 +82,7 @@ class ClassBuilder implements ClassBuilderInterface
     /**
      * @inheritDoc
      */
-    public function buildArray(string $class, array $data, bool $throwOnError = true, BuildStack &$stack = null): array
+    public function buildArray(string $class, array $data, bool $throwOnError = true, BuildStack|null &$stack = null): array
     {
         try {
             $stack ??= new BuildStack();

@@ -15,12 +15,12 @@ interface ClassBuilderInterface
      * @param string $class
      * @param mixed $data
      * @param bool $throwOnError
-     * @param BuildStack $stack
+     * @param BuildStack|null $stack
      *
      * @return object|null
      * @throws BuildExceptionInterface
      */
-    public function build(string $class, mixed $data, bool $throwOnError = true, BuildStack &$stack = new BuildStack()): object|null;
+    public function build(string $class, mixed $data, bool $throwOnError = true, BuildStack|null &$stack = new BuildStack()): object|null;
 
     /**
      * Build array of objects from array data.
@@ -30,10 +30,10 @@ interface ClassBuilderInterface
      * @param string $class
      * @param array $data
      * @param bool $throwOnError
-     * @param BuildStack $stack
+     * @param BuildStack|null $stack
      *
      * @return object[]
      * @throws BuildExceptionInterface
      */
-    public function buildArray(string $class, array $data, bool $throwOnError = true, BuildStack &$stack = new BuildStack()): array;
+    public function buildArray(string $class, array $data, bool $throwOnError = true, BuildStack|null &$stack = new BuildStack()): array;
 }

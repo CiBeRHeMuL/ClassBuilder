@@ -1,5 +1,10 @@
 # Change log of Class Builder Library
 
+## Version 1.2.4
+
+### General
++ Fix build method signature
+
 ## Version 1.2.3
 
 ### General
