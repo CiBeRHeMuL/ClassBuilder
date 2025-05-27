@@ -262,7 +262,7 @@ class ClassBuilder implements ClassBuilderInterface
             return $this->buildTypes($inheritors, $data, $stack);
         } else {
             $checker = $this->getBuildIfChecker($class);
-            $parameters = $reflection->getConstructor()->getParameters();
+            $parameters = $reflection->getConstructor()?->getParameters() ?? [];
             $canBeBuiltFromPrimitive = $this->canBuildFromPrimitive($class);
             if ($canBeBuiltFromPrimitive) {
                 $requiredParameters = array_filter(

@@ -1,5 +1,10 @@
 # Change log of Class Builder Library
 
+## Version 1.2.5
+
+### General
++ Fix building when no constructor exists
+
 ## Version 1.2.4
 
 ### General

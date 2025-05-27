@@ -149,6 +149,10 @@ class BuilderDataDataProvider
                 'class' => TC\TestNull::class,
                 'data' => ['a' => null],
             ],
+            [
+                'class' => TC\EmptyClass::class,
+                'data' => [],
+            ],
         ];
     }
 
@@ -245,6 +249,10 @@ class BuilderDataDataProvider
                     'a' => 'adsf',
                     'b' => 'asdf',
                 ],
+            ],
+            [
+                'class' => TC\EmptyClass::class,
+                'data' => 'asdf',
             ],
         ];
     }
