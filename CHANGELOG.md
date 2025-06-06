@@ -1,5 +1,10 @@
 # Change log of Class Builder Library
 
+## Version 1.3.1
+
+### General
++ Allowed to build DateTime(Immutable) objects from it`s array representation
+
 ## Version 1.3.0
 
 ### General

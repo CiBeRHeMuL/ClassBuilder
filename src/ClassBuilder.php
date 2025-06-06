@@ -181,13 +181,25 @@ class ClassBuilder implements ClassBuilderInterface
             try {
                 return new DateTime($data);
             } catch (Throwable) {
-                throw new Exp\CannotBuildException($stack);
+                try {
+                    $dt = new DateTime();
+                    $dt->__unserialize($data);
+                    return $dt;
+                } catch (Throwable) {
+                    throw new Exp\CannotBuildException($stack);
+                }
             }
         } elseif ($type === DateTimeImmutable::class) {
             try {
                 return new DateTimeImmutable($data);
             } catch (Throwable) {
-                throw new Exp\CannotBuildException($stack);
+                try {
+                    $dt = new DateTimeImmutable();
+                    $dt->__unserialize($data);
+                    return $dt;
+                } catch (Throwable) {
+                    throw new Exp\CannotBuildException($stack);
+                }
             }
         } else {
             throw new Exp\ClassNotFoundException($stack);

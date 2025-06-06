@@ -157,6 +157,10 @@ class BuilderDataDataProvider
                 'class' => TC\ScalarWithoutAttribute::class,
                 'data' => ['a' => 'asdf'],
             ],
+            [
+                'class' => TC\DateTimeClass::class,
+                'data' => ['time' => ["date" => "1970-01-01 18:00:00.000000", "timezone" => "Europe/Moscow", "timezone_type" => 3]],
+            ],
         ];
     }
 
@@ -261,6 +265,10 @@ class BuilderDataDataProvider
             [
                 'class' => TC\ScalarWithoutAttribute::class,
                 'data' => ['b' => 'asdf'],
+            ],
+            [
+                'class' => TC\DateTimeClass::class,
+                'data' => ['time' => ["date" => "1970-01-01 18:00:00.000000", "timezone" => "Europe/Moscow"]],
             ],
         ];
     }
