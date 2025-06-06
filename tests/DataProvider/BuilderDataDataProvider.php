@@ -153,6 +153,10 @@ class BuilderDataDataProvider
                 'class' => TC\EmptyClass::class,
                 'data' => [],
             ],
+            [
+                'class' => TC\ScalarWithoutAttribute::class,
+                'data' => ['a' => 'asdf'],
+            ],
         ];
     }
 
@@ -253,6 +257,10 @@ class BuilderDataDataProvider
             [
                 'class' => TC\EmptyClass::class,
                 'data' => 'asdf',
+            ],
+            [
+                'class' => TC\ScalarWithoutAttribute::class,
+                'data' => ['b' => 'asdf'],
             ],
         ];
     }

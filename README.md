@@ -1,6 +1,6 @@
 # Class Builder Library
 
-**Version 1.2.5**
+**Version 1.3.0**
 
 ## Description
 
@@ -108,7 +108,7 @@ class A
 
 ## Building objects from scalars
 
-If an object has only one required parameter, the library allows building such objects from scalar values. Use the `CanBeBuiltFromScalar` attribute.
+If an object has only one required parameter, the library allows building such objects from scalar values. You can use the `CanBeBuiltFromScalar` attribute.
 
 ```php
 <?php
@@ -125,8 +125,17 @@ class A
     }
 }
 
+class B
+{
+    public function __construct(
+        private int $a,
+    ) {
+    }
+}
+
 $classBuilder = new ClassBuilder();
 $a = $classBuilder->build(A::class, 1);
+$a = $classBuilder->build(B::class, 1);
 ```
 
 ## Get values from fields with custom names

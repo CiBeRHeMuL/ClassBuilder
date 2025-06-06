@@ -450,7 +450,7 @@ class ClassBuilder implements ClassBuilderInterface
             $reflection = $this->getReflection($class);
             if ($reflection) {
                 $attr = $reflection->getAttributes(CanBeBuiltFromScalar::class);
-                $this->canBuildFromPrimitive[$class] = !!$attr;
+                $this->canBuildFromPrimitive[$class] = !!$attr || $reflection->getConstructor()?->getNumberOfRequiredParameters() === 1;
                 return $this->canBuildFromPrimitive[$class];
             }
             $this->canBuildFromPrimitive[$class] = false;

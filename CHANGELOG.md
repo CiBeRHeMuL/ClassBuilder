@@ -1,5 +1,10 @@
 # Change log of Class Builder Library
 
+## Version 1.3.0
+
+### General
++ Allowed to build class with one required constructor parameter from primitive values
+
 ## Version 1.2.5
 
 ### General
