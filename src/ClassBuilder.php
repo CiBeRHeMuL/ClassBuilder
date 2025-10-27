@@ -161,16 +161,15 @@ class ClassBuilder implements ClassBuilderInterface
     private function buildPrimitive(string $type, mixed $data, BuildStack &$stack): null|bool|int|float|string|array
     {
         if (is_scalar($data) || is_null($data) || is_array($data)) {
-            if (
-                (in_array($type, ['int', 'integer']) && is_int($data))
-                || (in_array($type, ['float', 'double']) && is_float($data))
-                || ($type === 'string' && is_string($data))
-                || (in_array($type, ['bool', 'boolean']) && is_bool($data))
-                || ($type === 'null' && is_null($data))
-                || ($type === 'array' && is_array($data))
-            ) {
-                return $data;
-            }
+            return match (true) {
+                in_array($type, ['int', 'integer']) && !is_array($data) => (int)$data,
+                in_array($type, ['float', 'double']) && !is_array($data) => (float)$data,
+                in_array($type, ['string']) && !is_array($data) => (string)$data,
+                in_array($type, ['bool', 'boolean']) => (bool)$data,
+                in_array($type, ['null']) && is_null($data) => null,
+                in_array($type, ['array']) => (array)$data,
+                default => throw new Exp\CannotBuildException($stack),
+            };
         }
         throw new Exp\CannotBuildException($stack);
     }

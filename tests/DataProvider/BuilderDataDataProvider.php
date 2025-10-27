@@ -28,7 +28,7 @@ class BuilderDataDataProvider
                 ],
             ],
             [
-                'class' => TC\SimpleNotAllDefaultValueTest::class,
+                'class' => TC\SimpleNotAllDefaultValue::class,
                 'data' => [
                     'a' => 1,
                     'b' => 'asdf',
@@ -161,6 +161,17 @@ class BuilderDataDataProvider
                 'class' => TC\DateTimeClass::class,
                 'data' => ['time' => ["date" => "1970-01-01 18:00:00.000000", "timezone" => "Europe/Moscow", "timezone_type" => 3]],
             ],
+            [
+                'class' => TC\SimpleClass::class,
+                'data' => [
+                    'a' => 'asdf',
+                    'b' => 'asdf',
+                    'c' => 'asdf',
+                    'd' => 'asdf',
+                    'e' => 'asdf',
+                    'f' => null,
+                ],
+            ],
         ];
     }
 
@@ -170,7 +181,7 @@ class BuilderDataDataProvider
             [
                 'class' => TC\SimpleClass::class,
                 'data' => [
-                    'a' => 1,
+                    'a' => [1],
                     'b' => 'asdf',
                     'c' => false,
                     'd' => 1.1234,
@@ -180,11 +191,11 @@ class BuilderDataDataProvider
             [
                 'class' => TC\SimpleDefaultValueClass::class,
                 'data' => [
-                    'a' => 'asdf',
+                    'a' => ['asdf'],
                 ],
             ],
             [
-                'class' => TC\SimpleNotAllDefaultValueTest::class,
+                'class' => TC\SimpleNotAllDefaultValue::class,
                 'data' => [],
             ],
             [
@@ -192,7 +203,7 @@ class BuilderDataDataProvider
                 'data' => [
                     'a' => [1, 'asdf', false, 1.1234, [], null],
                     'b' => [[1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, [], null]],
-                    'c' => null,
+                    'c' => [[null]],
                 ],
             ],
             [
@@ -211,11 +222,11 @@ class BuilderDataDataProvider
             ],
             [
                 'class' => TC\SimpleScalarClass::class,
-                'data' => 1,
+                'data' => [],
             ],
             [
                 'class' => TC\SimpleScalarClass::class,
-                'data' => ['a' => 1],
+                'data' => ['a' => []],
             ],
             [
                 'class' => TC\SimpleScalarClass::class,
@@ -241,7 +252,7 @@ class BuilderDataDataProvider
                 'class' => TC\SimpleInheritanceGoodClass::class,
                 'data' => [
                     'name' => '3',
-                    'age' => 'asdf',
+                    'age' => ['asdf'],
                 ],
             ],
             [

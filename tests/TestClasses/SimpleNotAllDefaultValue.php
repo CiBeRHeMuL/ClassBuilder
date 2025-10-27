@@ -2,7 +2,7 @@
 
 namespace AndrewGos\ClassBuilder\Tests\TestClasses;
 
-class SimpleNotAllDefaultValueTest
+class SimpleNotAllDefaultValue
 {
     public function __construct(
         public int $a,
