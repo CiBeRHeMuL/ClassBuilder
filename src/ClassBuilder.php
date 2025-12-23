@@ -166,7 +166,7 @@ class ClassBuilder implements ClassBuilderInterface
                 in_array($type, ['float', 'double']) && !is_array($data) => (float)$data,
                 in_array($type, ['string']) && !is_array($data) => (string)$data,
                 in_array($type, ['bool', 'boolean']) => (bool)$data,
-                in_array($type, ['null']) && is_null($data) => null,
+                in_array($type, ['null']) && empty($data) => null,
                 in_array($type, ['array']) => (array)$data,
                 default => throw new Exp\CannotBuildException($stack),
             };
