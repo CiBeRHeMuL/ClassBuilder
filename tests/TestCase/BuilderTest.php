@@ -12,7 +12,7 @@ use PHPUnit\Framework\TestCase;
 class BuilderTest extends TestCase
 {
     #[DataProviderExternal(BuilderDataDataProvider::class, 'generateSuccess')]
-    public function testSuccessBuild(string $class, mixed $data, string|null $expected = null): void
+    public function testSuccessBuild(string $class, mixed $data, ?string $expected = null): void
     {
         $builder = new ClassBuilder();
         $expected ??= $class;
@@ -21,7 +21,7 @@ class BuilderTest extends TestCase
     }
 
     #[DataProviderExternal(BuilderDataDataProvider::class, 'generateNew')]
-    public function testSuccessNewBuild(string $class, mixed $data, string|null $expected = null): void
+    public function testSuccessNewBuild(string $class, mixed $data, ?string $expected = null): void
     {
         $builder = new ClassBuilder();
         $expected ??= $class;

@@ -8,9 +8,8 @@ use Attribute;
 class Field
 {
     public function __construct(
-        protected string $field
-    ) {
-    }
+        protected string $field,
+    ) {}
 
     public function getField(): string
     {

@@ -11,6 +11,5 @@ class SimpleDefaultValueClass
         public float $d = 1.1234,
         public array $e = [1, 23],
         public null $f = null,
-    ) {
-    }
+    ) {}
 }

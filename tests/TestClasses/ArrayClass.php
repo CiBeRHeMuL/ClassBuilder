@@ -8,7 +8,7 @@ class ArrayClass
 {
     public function __construct(
         public string $a,
-        #[ArrayType(SimpleScalarClass::class)] public array $b,
-    ) {
-    }
+        #[ArrayType(SimpleScalarClass::class)]
+        public array $b,
+    ) {}
 }

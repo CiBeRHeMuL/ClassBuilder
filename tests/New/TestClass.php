@@ -13,12 +13,14 @@ class TestClass
         private float $d,
         private string $e,
         private array $f,
-        private null|bool|int|float|string|array $g,
-        #[ArrayType('int')] private array $h,
-        #[ArrayType(new ArrayType('bool'))] private array $i,
+        private bool|int|float|string|array|null $g,
+        #[ArrayType('int')]
+        private array $h,
+        #[ArrayType(new ArrayType('bool'))]
+        private array $i,
         private TestInheritInterface $j,
         private (Intersection1Interface&Intersection2Interface)|TestInheritInterface $k,
-        #[ArrayType(TestInheritInterface::class)] array ...$l,
-    ) {
-    }
+        #[ArrayType(TestInheritInterface::class)]
+        array ...$l,
+    ) {}
 }

@@ -12,6 +12,5 @@ class TestInheritInterface1 implements TestInheritInterface
 {
     public function __construct(
         private int $a,
-    ) {
-    }
+    ) {}
 }

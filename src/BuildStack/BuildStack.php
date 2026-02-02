@@ -72,7 +72,7 @@ final class BuildStack
         return count($this->stack);
     }
 
-    public function getLast(): BuildStackItem|null
+    public function getLast(): ?BuildStackItem
     {
         return end($this->stack) ?: null;
     }

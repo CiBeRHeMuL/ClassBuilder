@@ -12,8 +12,7 @@ readonly class AvailableInheritors
      */
     public function __construct(
         private array $inheritors = [],
-    ) {
-    }
+    ) {}
 
     /**
      * @return class-string[]

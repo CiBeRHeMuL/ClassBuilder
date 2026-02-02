@@ -12,6 +12,5 @@ abstract class AllClass
 {
     public function __construct(
         public int $a,
-    ) {
-    }
+    ) {}
 }

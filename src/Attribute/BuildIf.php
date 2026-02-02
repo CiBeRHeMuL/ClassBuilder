@@ -10,8 +10,7 @@ readonly class BuildIf
 {
     public function __construct(
         private CheckerInterface $checker,
-    ) {
-    }
+    ) {}
 
     public function getChecker(): CheckerInterface
     {

@@ -9,8 +9,7 @@ readonly class AndChecker implements CheckerInterface
      */
     public function __construct(
         private array $checkers,
-    ) {
-    }
+    ) {}
 
     public function check(mixed $data): bool
     {

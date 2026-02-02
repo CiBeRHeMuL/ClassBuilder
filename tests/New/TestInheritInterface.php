@@ -8,6 +8,4 @@ use AndrewGos\ClassBuilder\Attribute\AvailableInheritors;
     TestInheritInterface1::class,
     TestInheritInterface2::class,
 ])]
-interface TestInheritInterface
-{
-}
+interface TestInheritInterface {}

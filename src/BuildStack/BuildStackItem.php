@@ -11,8 +11,7 @@ final readonly class BuildStackItem
         private string $name,
         private string $type,
         private string $dataType,
-    ) {
-    }
+    ) {}
 
     public function getSource(): BuildStackItemSourceEnum
     {

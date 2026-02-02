@@ -6,6 +6,5 @@ class ScalarWithoutAttribute
 {
     public function __construct(
         public string $a,
-    ) {
-    }
+    ) {}
 }

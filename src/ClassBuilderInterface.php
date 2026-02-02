@@ -20,7 +20,7 @@ interface ClassBuilderInterface
      * @return object|null
      * @throws BuildExceptionInterface
      */
-    public function build(string $class, mixed $data, bool $throwOnError = true, BuildStack|null &$stack = new BuildStack()): object|null;
+    public function build(string $class, mixed $data, bool $throwOnError = true, ?BuildStack &$stack = new BuildStack()): ?object;
 
     /**
      * Build array of objects from array data.
@@ -35,5 +35,5 @@ interface ClassBuilderInterface
      * @return object[]
      * @throws BuildExceptionInterface
      */
-    public function buildArray(string $class, array $data, bool $throwOnError = true, BuildStack|null &$stack = new BuildStack()): array;
+    public function buildArray(string $class, array $data, bool $throwOnError = true, ?BuildStack &$stack = new BuildStack()): array;
 }

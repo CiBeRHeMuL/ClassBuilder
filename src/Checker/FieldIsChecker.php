@@ -8,8 +8,7 @@ readonly class FieldIsChecker implements CheckerInterface
         private string|int $field,
         private mixed $equalTo,
         private bool $strict = true,
-    ) {
-    }
+    ) {}
 
     public function check(mixed $data): bool
     {

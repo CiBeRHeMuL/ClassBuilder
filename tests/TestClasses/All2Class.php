@@ -9,6 +9,4 @@ use AndrewGos\ClassBuilder\Enum\CompareOperatorEnum;
 
 #[CanBeBuiltFromScalar]
 #[BuildIf(new FieldCompareChecker('a', 1, CompareOperatorEnum::LessOrEqual))]
-class All2Class extends AllClass
-{
-}
+class All2Class extends AllClass {}

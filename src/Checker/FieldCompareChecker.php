@@ -10,8 +10,7 @@ readonly class FieldCompareChecker implements CheckerInterface
         private string|int $field,
         private mixed $compareValue,
         private CompareOperatorEnum $operator,
-    ) {
-    }
+    ) {}
 
     public function check(mixed $data): bool
     {

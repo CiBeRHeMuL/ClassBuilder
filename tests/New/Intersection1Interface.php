@@ -7,6 +7,4 @@ use AndrewGos\ClassBuilder\Attribute\AvailableInheritors;
 #[AvailableInheritors([
     IntersectionClass::class,
 ])]
-interface Intersection1Interface
-{
-}
+interface Intersection1Interface {}

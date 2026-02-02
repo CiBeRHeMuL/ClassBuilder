@@ -54,7 +54,7 @@ class ClassBuilder implements ClassBuilderInterface
     /**
      * @inheritDoc
      */
-    public function build(string $class, mixed $data, bool $throwOnError = true, BuildStack|null &$stack = null): object|null
+    public function build(string $class, mixed $data, bool $throwOnError = true, ?BuildStack &$stack = null): ?object
     {
         try {
             $needPop = false;
@@ -82,7 +82,7 @@ class ClassBuilder implements ClassBuilderInterface
     /**
      * @inheritDoc
      */
-    public function buildArray(string $class, array $data, bool $throwOnError = true, BuildStack|null &$stack = null): array
+    public function buildArray(string $class, array $data, bool $throwOnError = true, ?BuildStack &$stack = null): array
     {
         try {
             $stack ??= new BuildStack();
@@ -163,16 +163,16 @@ class ClassBuilder implements ClassBuilderInterface
         }
     }
 
-    private function buildPrimitive(string $type, mixed $data, BuildStack &$stack): null|bool|int|float|string|array
+    private function buildPrimitive(string $type, mixed $data, BuildStack &$stack): bool|int|float|string|array|null
     {
         if (is_scalar($data) || is_null($data) || is_array($data)) {
             return match (true) {
-                in_array($type, ['int', 'integer']) && !is_array($data) => (int)$data,
-                in_array($type, ['float', 'double']) && !is_array($data) => (float)$data,
-                in_array($type, ['string']) && !is_array($data) => (string)$data,
-                in_array($type, ['bool', 'boolean']) => (bool)$data,
+                in_array($type, ['int', 'integer']) && !is_array($data) => (int) $data,
+                in_array($type, ['float', 'double']) && !is_array($data) => (float) $data,
+                in_array($type, ['string']) && !is_array($data) => (string) $data,
+                in_array($type, ['bool', 'boolean']) => (bool) $data,
                 in_array($type, ['null']) && empty($data) => null,
-                in_array($type, ['array']) => (array)$data,
+                in_array($type, ['array']) => (array) $data,
                 default => throw new Exp\CannotBuildException($stack),
             };
         }
@@ -345,7 +345,7 @@ class ClassBuilder implements ClassBuilderInterface
                         } else {
                             $isOptional = $parameter->isOptional();
                             $allowDefaultValue = $parameter->isDefaultValueAvailable();
-                            $stack->addPrimitive($pName, (string)$parameter->getType() ?: 'mixed', 'null');
+                            $stack->addPrimitive($pName, (string) $parameter->getType() ?: 'mixed', 'null');
                             if ($isOptional && $allowDefaultValue) {
                                 $boundParameters[$pName] = $parameter->getDefaultValue();
                             } else {
@@ -412,7 +412,7 @@ class ClassBuilder implements ClassBuilderInterface
      *
      * @return ReflectionClass|null
      */
-    private function getReflection(string $class): ReflectionClass|null
+    private function getReflection(string $class): ?ReflectionClass
     {
         if (isset($this->reflections[$class])) {
             return $this->reflections[$class];
@@ -466,7 +466,7 @@ class ClassBuilder implements ClassBuilderInterface
         }
     }
 
-    private function getBuildIfChecker(string $class): CheckerInterface|null
+    private function getBuildIfChecker(string $class): ?CheckerInterface
     {
         if (array_key_exists($class, $this->buildIfs)) {
             return $this->buildIfs[$class];
@@ -492,7 +492,7 @@ class ClassBuilder implements ClassBuilderInterface
      */
     private function resolveTypes(ReflectionType $type, BuildStack &$stack): array
     {
-        $typeStr = (string)$type;
+        $typeStr = (string) $type;
         if (isset($this->types[$typeStr])) {
             return $this->types[$typeStr];
         }

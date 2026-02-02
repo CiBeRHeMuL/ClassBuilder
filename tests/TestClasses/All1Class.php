@@ -12,8 +12,10 @@ class All1Class extends AllClass
 {
     public function __construct(
         int $a,
-        #[ArrayType(AllClass::class)] public array $b,
-        #[ArrayType(SimpleScalarClass::class)] public array $c,
+        #[ArrayType(AllClass::class)]
+        public array $b,
+        #[ArrayType(SimpleScalarClass::class)]
+        public array $c,
     ) {
         parent::__construct($a);
     }

@@ -15,8 +15,7 @@ readonly class ArrayType implements \Stringable
      */
     public function __construct(
         private string|array|ArrayType $type,
-    ) {
-    }
+    ) {}
 
     /**
      * @return ArrayType|string[]|string
@@ -28,6 +27,6 @@ readonly class ArrayType implements \Stringable
 
     public function __toString(): string
     {
-        return '(' . implode('|', (array)$this->type) . ')[]';
+        return '(' . implode('|', (array) $this->type) . ')[]';
     }
 }

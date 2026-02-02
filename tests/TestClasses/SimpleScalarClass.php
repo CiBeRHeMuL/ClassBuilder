@@ -9,6 +9,5 @@ class SimpleScalarClass
 {
     public function __construct(
         public string $a,
-    ) {
-    }
+    ) {}
 }

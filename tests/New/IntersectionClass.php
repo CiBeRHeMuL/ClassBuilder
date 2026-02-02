@@ -6,6 +6,5 @@ class IntersectionClass implements Intersection1Interface, Intersection2Interfac
 {
     public function __construct(
         private int $a,
-    ) {
-    }
+    ) {}
 }

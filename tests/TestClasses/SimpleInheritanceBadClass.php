@@ -9,6 +9,5 @@ class SimpleInheritanceBadClass
 {
     public function __construct(
         string $name,
-    ) {
-    }
+    ) {}
 }

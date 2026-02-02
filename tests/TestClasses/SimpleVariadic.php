@@ -10,7 +10,7 @@ class SimpleVariadic
     private array $a;
 
     public function __construct(
-        int ...$a
+        int ...$a,
     ) {
         $this->a = $a;
     }

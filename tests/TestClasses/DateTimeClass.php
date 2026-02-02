@@ -10,6 +10,5 @@ class DateTimeClass
 {
     public function __construct(
         private DateTime $time,
-    ) {
-    }
+    ) {}
 }

@@ -13,6 +13,5 @@ class SimpleInheritanceGoodClass
 {
     public function __construct(
         public string $name,
-    ) {
-    }
+    ) {}
 }

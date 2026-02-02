@@ -15,14 +15,14 @@ abstract class AbstractBuildException extends RuntimeException implements BuildE
 Cannot build %s of type '%s' from value of type '%s' because %s
 TEXT,
             $this->buildStack->getSize() > 1
-                ? sprintf("parameter '%s'", (string)$this->buildStack)
+                ? sprintf("parameter '%s'", (string) $this->buildStack)
                 : 'value',
             $this->buildStack->getLast()->getTypePretty(),
             $this->buildStack->getLast()->getDataType(),
             $this->getCause(),
         );
         parent::__construct(
-            $message
+            $message,
         );
     }
 

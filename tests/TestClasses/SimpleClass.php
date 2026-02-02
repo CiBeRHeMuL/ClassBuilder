@@ -11,6 +11,5 @@ class SimpleClass
         public float $d,
         public array $e,
         public null $f,
-    ) {
-    }
+    ) {}
 }

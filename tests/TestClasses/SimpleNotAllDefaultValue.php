@@ -11,6 +11,5 @@ class SimpleNotAllDefaultValue
         public float $d,
         public array $e = [1, 2],
         public null $f = null,
-    ) {
-    }
+    ) {}
 }
