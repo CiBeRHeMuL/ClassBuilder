@@ -172,6 +172,18 @@ class BuilderDataDataProvider
                     'f' => null,
                 ],
             ],
+            [
+                'class' => TC\WithDefaultReferenceClass::class,
+                'data' => [],
+            ],
+            [
+                'class' => TC\WithoutDefaultReferenceClass::class,
+                'data' => ['a' => 1],
+            ],
+            [
+                'class' => TC\WithoutDefaultReferenceClass::class,
+                'data' => ['a' => null],
+            ],
         ];
     }
 

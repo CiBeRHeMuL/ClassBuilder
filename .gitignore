@@ -3,4 +3,6 @@
 /.git
 
 .phpunit.result.cache
+phpunit.xml
+
 composer.lock

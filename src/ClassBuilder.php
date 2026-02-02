@@ -117,6 +117,11 @@ class ClassBuilder implements ClassBuilderInterface
      */
     private function buildTypes(array $types, mixed $data, BuildStack &$stack): mixed
     {
+        $dataType = get_debug_type($data);
+        if (in_array($dataType, $types, true)) {
+            return $data;
+        }
+
         $types = array_values($types);
         foreach ($types as $k => $type) {
             try {
@@ -298,14 +303,6 @@ class ClassBuilder implements ClassBuilderInterface
                     $boundParameters = [];
                     $variadicParameter = null;
                     foreach ($parameters as $parameter) {
-                        if ($parameter->isPassedByReference()) {
-                            $stack->addPrimitive(
-                                $parameter->getName(),
-                                (string)$parameter->getType(),
-                                get_debug_type($data[$parameter->getName()] ?? null)
-                            );
-                            throw new Exp\CannotBuildReferenceException($stack);
-                        }
                         $pName = $field = $parameter->getName();
                         $fieldAttr = $parameter->getAttributes(Field::class);
                         if ($fieldAttr) {
