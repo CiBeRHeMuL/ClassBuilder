@@ -1,12 +1,26 @@
 <?php
 
+// GREP_SUMMARY: BuilderDataDataProvider, test data, PHPUnit data provider, success cases, failure cases, intersection types
+// STRUCTURE: generateSuccess() → array of ┌class + data + expected┐ → generateFailure() → array of ┌class + data┐ → generateNew() → array of ┌class + data + expected┐
+
 namespace AndrewGos\ClassBuilder\Tests\DataProvider;
 
 use AndrewGos\ClassBuilder\Tests\New\TestClass;
 use AndrewGos\ClassBuilder\Tests\TestClasses as TC;
 
+// region CLASS_BuilderDataDataProvider [DOMAIN(7): Testing; CONCEPT(7): DataProvider; TECH(7): PHPUnit]
+/**
+ * @purpose Provides test data sets for BuilderTest: success scenarios, expected failure scenarios, and new feature scenarios (intersection/union types, nested ArrayType).
+ */
 class BuilderDataDataProvider
 {
+    /**
+     * @purpose Provide test cases that should succeed: primitive types, arrays, inheritance, DateTime, variadic, references, null values.
+     * @io -> array
+     * @complexity 2
+     *
+     * @return array Array of [class, data, expected?] test cases
+     */
     public static function generateSuccess(): array
     {
         return [
@@ -16,7 +30,7 @@ class BuilderDataDataProvider
                     'a' => 1,
                     'b' => 'asdf',
                     'c' => false,
-                    'd' => 1.1234,
+                    'd' => 1.123_4,
                     'e' => ['asdf', 1, false],
                     'f' => null,
                 ],
@@ -33,22 +47,22 @@ class BuilderDataDataProvider
                     'a' => 1,
                     'b' => 'asdf',
                     'c' => false,
-                    'd' => 1.1234,
+                    'd' => 1.123_4,
                 ],
             ],
             [
                 'class' => TC\SimpleArrayClass::class,
                 'data' => [
-                    'a' => [1, 'asdf', false, 1.1234, null],
-                    'b' => [[1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null]],
+                    'a' => [1, 'asdf', false, 1.123_4, null],
+                    'b' => [[1, 'asdf', false, 1.123_4, null], [1, 'asdf', false, 1.123_4, null], [1, 'asdf', false, 1.123_4, null]],
                     'c' => ['asdf'],
                 ],
             ],
             [
                 'class' => TC\SimpleArrayClass::class,
                 'data' => [
-                    'a' => [1, 'asdf', false, 1.1234, null],
-                    'b' => [[1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null]],
+                    'a' => [1, 'asdf', false, 1.123_4, null],
+                    'b' => [[1, 'asdf', false, 1.123_4, null], [1, 'asdf', false, 1.123_4, null], [1, 'asdf', false, 1.123_4, null]],
                     'c' => null,
                 ],
             ],
@@ -88,7 +102,7 @@ class BuilderDataDataProvider
                 'class' => TC\SimpleInheritanceGoodClass::class,
                 'data' => [
                     'name' => '3',
-                    'age' => 1234,
+                    'age' => 1_234,
                 ],
                 'expected' => TC\SimpleInheritanceGoodChild3Class::class,
             ],
@@ -96,7 +110,7 @@ class BuilderDataDataProvider
                 'class' => TC\SimpleInheritanceGoodClass::class,
                 'data' => [
                     'name' => '3',
-                    'age' => 1234,
+                    'age' => 1_234,
                 ],
                 'expected' => TC\SimpleInheritanceGoodChild3Class::class,
             ],
@@ -130,11 +144,11 @@ class BuilderDataDataProvider
                 'expected' => TC\All2Class::class,
             ],
             [
-                'class' => Tc\SimpleVariadic::class,
+                'class' => TC\SimpleVariadic::class,
                 'data' => ['a' => [1, 2, 3]],
             ],
             [
-                'class' => Tc\SimpleVariadic::class,
+                'class' => TC\SimpleVariadic::class,
                 'data' => [1, 2, 3],
             ],
             [
@@ -159,7 +173,7 @@ class BuilderDataDataProvider
             ],
             [
                 'class' => TC\DateTimeClass::class,
-                'data' => ['time' => ["date" => "1970-01-01 18:00:00.000000", "timezone" => "Europe/Moscow", "timezone_type" => 3]],
+                'data' => ['time' => ['date' => '1970-01-01 18:00:00.000000', 'timezone' => 'Europe/Moscow', 'timezone_type' => 3]],
             ],
             [
                 'class' => TC\SimpleClass::class,
@@ -187,6 +201,13 @@ class BuilderDataDataProvider
         ];
     }
 
+    /**
+     * @purpose Provide test cases that should throw AbstractBuildException: type mismatches, missing required parameters, invalid inheritance.
+     * @io -> array
+     * @complexity 2
+     *
+     * @return array Array of [class, data] test cases
+     */
     public static function generateFailure(): array
     {
         return [
@@ -196,7 +217,7 @@ class BuilderDataDataProvider
                     'a' => [1],
                     'b' => 'asdf',
                     'c' => false,
-                    'd' => 1.1234,
+                    'd' => 1.123_4,
                     'e' => null,
                 ],
             ],
@@ -213,22 +234,22 @@ class BuilderDataDataProvider
             [
                 'class' => TC\SimpleArrayClass::class,
                 'data' => [
-                    'a' => [1, 'asdf', false, 1.1234, [], null],
-                    'b' => [[1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, [], null]],
+                    'a' => [1, 'asdf', false, 1.123_4, [], null],
+                    'b' => [[1, 'asdf', false, 1.123_4, null], [1, 'asdf', false, 1.123_4, null], [1, 'asdf', false, 1.123_4, [], null]],
                     'c' => [[null]],
                 ],
             ],
             [
                 'class' => TC\SimpleArrayClass::class,
                 'data' => [
-                    'a' => [1, 'asdf', false, 1.1234, null],
-                    'b' => [[1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, null], [1, 'asdf', false, 1.1234, [], null]],
+                    'a' => [1, 'asdf', false, 1.123_4, null],
+                    'b' => [[1, 'asdf', false, 1.123_4, null], [1, 'asdf', false, 1.123_4, null], [1, 'asdf', false, 1.123_4, [], null]],
                 ],
             ],
             [
                 'class' => TC\SimpleArrayClass::class,
                 'data' => [
-                    'a' => [1, 'asdf', false, 1.1234, null],
+                    'a' => [1, 'asdf', false, 1.123_4, null],
                     'b' => [1],
                 ],
             ],
@@ -291,11 +312,18 @@ class BuilderDataDataProvider
             ],
             [
                 'class' => TC\DateTimeClass::class,
-                'data' => ['time' => ["date" => "1970-01-01 18:00:00.000000", "timezone" => "Europe/Moscow"]],
+                'data' => ['time' => ['date' => '1970-01-01 18:00:00.000000', 'timezone' => 'Europe/Moscow']],
             ],
         ];
     }
 
+    /**
+     * @purpose Provide test cases for new features: nullable types, union types, intersection types, nested ArrayType, variadic parameters with ArrayType.
+     * @io -> array
+     * @complexity 2
+     *
+     * @return array Array of [class, data, expected?] test cases
+     */
     public static function generateNew(): array
     {
         return [

@@ -1,9 +1,15 @@
 <?php
 
+// GREP_SUMMARY: New\TestClass, nullable, union, intersection, nested ArrayType, variadic
+
 namespace AndrewGos\ClassBuilder\Tests\New;
 
 use AndrewGos\ClassBuilder\Attribute\ArrayType;
 
+// region CLASS_TestClass [DOMAIN(6): Testing; CONCEPT(6): TestFixture; TECH(6): PHP8]
+/**
+ * @purpose Comprehensive test class covering nullable, union, intersection, nested ArrayType, and variadic with ArrayType
+ */
 class TestClass
 {
     public function __construct(
