@@ -5,6 +5,9 @@
 ### Added
 + docs: Add semantic markup (PHPDoc contracts, region tags, GREP_SUMMARY, STRUCTURE) to all source and test files
 
+### Fixed
++ fix: Prevent infinite recursion in recursive union types by sorting types by triviality (primitives before classes)
+
 ## Version 1.3.1
 
 ### General

@@ -347,6 +347,18 @@ class BuilderDataDataProvider
                     ],
                 ],
             ],
+            [
+                'class' => TC\RecursiveTypeClass::class,
+                'data' => 'asdf',
+            ],
+            [
+                'class' => TC\RecursiveTypeClass::class,
+                'data' => ['a' => ['asdf', 'qwer']],
+            ],
+            [
+                'class' => TC\RecursiveTypeClass::class,
+                'data' => ['a' => ['a' => ['a' => 'asdf']]],
+            ],
         ];
     }
 }

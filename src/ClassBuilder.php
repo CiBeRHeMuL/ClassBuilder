@@ -85,6 +85,17 @@ class ClassBuilder implements ClassBuilderInterface
      */
     private array $types = [];
 
+    private const PRIMITIVE_MAP = [
+        'int' => true,
+        'integer' => true,
+        'float' => true,
+        'double' => true,
+        'string' => true,
+        'bool' => true,
+        'boolean' => true,
+        'array' => true,
+    ];
+
     // region METHOD_build [DOMAIN(10): ClassBuilder; CONCEPT(10): EntryPoint; TECH(9): BuildStack]
     /**
      * @purpose Main entry point: construct a single object of the given class from arbitrary data.
@@ -409,6 +420,9 @@ class ClassBuilder implements ClassBuilderInterface
     {
         if (is_array($data)) {
             $subType = $type->getType();
+            if (is_array($subType)) {
+                $subType = $this->sortTypesByTriviality($subType);
+            }
             $result = [];
             foreach ($data as $key => $value) {
                 if ($subType instanceof ArrayType) {
@@ -717,6 +731,29 @@ class ClassBuilder implements ClassBuilderInterface
     }
     // endregion METHOD_getBuildIfChecker
 
+    // region METHOD_sortTypesByTriviality [DOMAIN(10): ClassBuilder; CONCEPT(10): TypeSorting; TECH(9): StableSort]
+    /**
+     * @purpose Sort type names by triviality (cost to attempt building): null first, then primitives, then classes. Stable sort preserves original order within groups.
+     * @io string[] -> string[]
+     * @complexity 2
+     *
+     * @param string[] $types Unsorted type name array
+     *
+     * @return string[] Types sorted by triviality
+     */
+    private function sortTypesByTriviality(array $types): array
+    {
+        usort($types, function (string $a, string $b): int {
+            $priorityA = $a === 'null' ? 0 : (isset(self::PRIMITIVE_MAP[$a]) ? 1 : 2);
+            $priorityB = $b === 'null' ? 0 : (isset(self::PRIMITIVE_MAP[$b]) ? 1 : 2);
+
+            return $priorityA <=> $priorityB;
+        });
+
+        return $types;
+    }
+    // endregion METHOD_sortTypesByTriviality
+
     // region METHOD_resolveTypes [DOMAIN(10): ClassBuilder; CONCEPT(10): TypeResolution; TECH(9): ReflectionType]
     /**
      * @purpose Flatten ReflectionType into a string array of type names; resolve intersection types through inheritor intersection.
@@ -741,6 +778,7 @@ class ClassBuilder implements ClassBuilderInterface
             if ($type->allowsNull()) {
                 $types[] = 'null';
             }
+            $types = $this->sortTypesByTriviality($types);
             $this->types[$typeStr] = $types;
 
             return $types;
@@ -750,6 +788,7 @@ class ClassBuilder implements ClassBuilderInterface
                 fn(ReflectionType $t) => $this->resolveTypes($t, $stack),
                 $types,
             ));
+            $types = $this->sortTypesByTriviality($types);
             $this->types[$typeStr] = $types;
 
             return $types;
@@ -774,6 +813,7 @@ class ClassBuilder implements ClassBuilderInterface
                 }
             }
             $types = array_values($preparedTypes);
+            $types = $this->sortTypesByTriviality($types);
             $this->types[$typeStr] = $types;
 
             return $types;
